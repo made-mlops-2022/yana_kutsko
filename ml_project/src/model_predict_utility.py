@@ -2,10 +2,6 @@ import click
 import pickle
 import pandas as pd
 
-from model.model import Model
-from data.dataset_operations import DatasetOperations
-from parameters.read_params import read_params
-
 
 @click.command(name='predict_model')
 @click.argument('model_path')
