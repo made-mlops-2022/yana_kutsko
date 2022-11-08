@@ -1,3 +1,6 @@
+import logging
+import os
+import shutil
 import unittest
 from synthesize_test_data import synthesize_test_data
 from data.dataset_operations import DatasetOperations
@@ -9,6 +12,17 @@ class TestDataOperations(unittest.TestCase):
     def setUpClass(cls):
         cls.synthesized_data_path = synthesize_test_data('../data/heart_cleveland.csv')
         cls.dataset_operations = DatasetOperations()
+
+    @classmethod
+    def tearDownClass(cls):
+        os.remove('ml-ops.log')
+        shutil.rmtree('./out')
+
+    def setUp(self):
+        logging.disable(logging.CRITICAL)
+
+    def tearDown(self):
+        logging.disable(logging.NOTSET)
 
     def test_read_dataset(self):
         df = self.dataset_operations.read_dataset(self.synthesized_data_path)

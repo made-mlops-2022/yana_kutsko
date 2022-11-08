@@ -1,4 +1,6 @@
+import logging
 import os
+import shutil
 import unittest
 from synthesize_test_data import synthesize_test_data
 from model_train_utility import train_model
@@ -9,6 +11,18 @@ class TestTrainModelUtility(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
         cls.synthesized_data_path = synthesize_test_data('../data/heart_cleveland.csv')
+
+    @classmethod
+    def tearDownClass(cls):
+        os.remove('ml-ops.log')
+        shutil.rmtree('./out')
+        shutil.rmtree('./models')
+
+    def setUp(self):
+        logging.disable(logging.CRITICAL)
+
+    def tearDown(self):
+        logging.disable(logging.NOTSET)
 
     def test_train_model_knn(self):
         config_path = './test_configs/knn.yaml'
