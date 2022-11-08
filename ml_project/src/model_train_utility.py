@@ -5,9 +5,7 @@ from parameters.read_params import read_params
 from loggers.logger import create_root_loger
 
 
-@click.command(name='train_model')
-@click.argument('config_path')
-def train_model(config_path: str):
+def train_model(config_path):
     logger = create_root_loger()
     config = read_params(config_path)
     dataset_operations = DatasetOperations()
@@ -22,9 +20,15 @@ def train_model(config_path: str):
     model.train(X_train, y_train)
     model.serialize_model(config.output_model_path)
     logger.info(f'Model in stored in {config.output_model_path}')
+
+
+@click.command(name='train_model')
+@click.argument('config_path')
+def train_model_command(config_path: str):
+    train_model(config_path)
     print('Done')
 
 
 if __name__ == "__main__":
-    train_model()
+    train_model_command()
 

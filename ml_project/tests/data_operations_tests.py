@@ -1,5 +1,4 @@
 import unittest
-import os
 from synthesize_test_data import synthesize_test_data
 from data.dataset_operations import DatasetOperations
 
