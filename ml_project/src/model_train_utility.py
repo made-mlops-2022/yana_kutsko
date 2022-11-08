@@ -2,7 +2,7 @@ import click
 from model.model import Model
 from data.dataset_operations import DatasetOperations
 from parameters.read_params import read_params
-from logger import create_root_loger
+from loggers.logger import create_root_loger
 
 
 @click.command(name='train_model')

@@ -1,8 +1,7 @@
-import numpy as np
 import pandas as pd
 from typing import Tuple
 from sklearn.model_selection import train_test_split
-from logger import create_root_loger
+from loggers.logger import create_root_loger
 
 
 class DatasetOperations:
