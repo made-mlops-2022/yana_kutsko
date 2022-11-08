@@ -1,10 +1,10 @@
 ## To train model via console utility:
 
-<em>Train KNeighborsClassifier model</em>
+<em>Train KNeighborsClassifier model:</em>
 
 <pre><code>python ml_project/src/model_train_utility.py 'ml_project/configs/knn.yaml'</code></pre>
 
-<em>Train LogisticRegression model</em>
+<em>Train LogisticRegression model:</em>
 
 <pre><code>python ml_project/src/model_train_utility.py 'ml_project/configs/knn.yaml'</code></pre>
 
