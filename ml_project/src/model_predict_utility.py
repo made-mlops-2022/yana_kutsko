@@ -2,7 +2,7 @@ import os
 import click
 import pickle
 import pandas as pd
-from loggers.logger import create_root_loger
+from ml_project.src.loggers.logger import create_root_loger
 
 
 def predict_model(model_path: str, data_csv_path: str, output_path: str):
@@ -16,7 +16,7 @@ def predict_model(model_path: str, data_csv_path: str, output_path: str):
     logger.info(f'Prediction is stored in {output_path}')
 
 
-@click.command(name='predict_model')
+@click.command(name='predict_model_command')
 @click.argument('model_path')
 @click.argument('data_csv_path')
 @click.argument('output_path')

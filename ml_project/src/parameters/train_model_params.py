@@ -1,9 +1,9 @@
 from dataclasses import dataclass
 from marshmallow_dataclass import class_schema
-from parameters.split_params import SplitParams
-from parameters.features_params import FeaturesParams
-from parameters.model_params import ModelParams
-from parameters.data_params import DataParams
+from ml_project.src.parameters.split_params import SplitParams
+from ml_project.src.parameters.features_params import FeaturesParams
+from ml_project.src.parameters.model_params import ModelParams
+from ml_project.src.parameters.data_params import DataParams
 
 
 @dataclass

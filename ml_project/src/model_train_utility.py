@@ -1,8 +1,8 @@
 import click
-from model.model import Model
-from data.dataset_operations import DatasetOperations
-from parameters.read_params import read_params
-from loggers.logger import create_root_loger
+from ml_project.src.model.model import Model
+from ml_project.src.data.dataset_operations import DatasetOperations
+from ml_project.src.parameters.read_params import read_params
+from ml_project.src.loggers.logger import create_root_loger
 
 
 def train_model(config_path):
@@ -22,7 +22,7 @@ def train_model(config_path):
     logger.info(f'Model in stored in {config.output_model_path}')
 
 
-@click.command(name='train_model')
+@click.command(name='train_model_command')
 @click.argument('config_path')
 def train_model_command(config_path: str):
     train_model(config_path)

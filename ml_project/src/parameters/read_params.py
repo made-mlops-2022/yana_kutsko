@@ -1,5 +1,5 @@
 import yaml
-from parameters.train_model_params import TrainModelParams, TrainModelParamsSchema
+from ml_project.src.parameters.train_model_params import TrainModelParams, TrainModelParamsSchema
 
 
 def read_params(config_path: str) -> TrainModelParams:

@@ -2,15 +2,15 @@ import logging
 import os
 import shutil
 import unittest
-from synthesize_test_data import synthesize_test_data
-from data.dataset_operations import DatasetOperations
+from ml_project.src.data.dataset_operations import DatasetOperations
+from ml_project.test_data.synthesize_test_data import synthesize_test_data
 
 
 class TestDataOperations(unittest.TestCase):
 
     @classmethod
     def setUpClass(cls):
-        cls.synthesized_data_path = synthesize_test_data('../data/heart_cleveland.csv')
+        cls.synthesized_data_path = synthesize_test_data('./ml_project/data/heart_cleveland.csv')
         cls.dataset_operations = DatasetOperations()
 
     @classmethod
@@ -69,6 +69,10 @@ class TestDataOperations(unittest.TestCase):
 
         self.assertEqual(X_train.shape[1], X_test.shape[1])
         self.assertNotEqual(y_train.shape, y_test.shape)
+
+
+if __name__ == '__main__':
+    unittest.main()
 
 
 

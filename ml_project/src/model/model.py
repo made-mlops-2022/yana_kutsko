@@ -11,8 +11,8 @@ from sklearn.linear_model import LogisticRegression
 from sklearn.metrics import f1_score, roc_auc_score, accuracy_score
 from sklearn.pipeline import Pipeline, FeatureUnion
 from sklearn.preprocessing import StandardScaler
-from transformers.feature_selector import FeatureSelector
-from loggers.logger import create_root_loger
+from ml_project.src.transformers.feature_selector import FeatureSelector
+from ml_project.src.loggers.logger import create_root_loger
 
 
 class Model:
