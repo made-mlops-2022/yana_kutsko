@@ -4,7 +4,6 @@ import uvicorn
 
 from fastapi import FastAPI
 from fastapi.encoders import jsonable_encoder
-from fastapi.exception_handlers import request_validation_exception_handler
 from fastapi.exceptions import RequestValidationError, HTTPException
 from starlette.responses import PlainTextResponse
 
