@@ -58,10 +58,14 @@ class Model:
         ])
         self.logger.debug('Pipeline setup is finished')
         self.logger.debug(f'GridSearchCV with next params starts fitting: {self.param_grid}')
+
         classifier_search = GridSearchCV(full_pipeline_with_model, self.param_grid, cv=10)
         classifier_search.fit(X_train, y_train)
+
         self.logger.info(f'GridSearchCV with next params successfully finished fitting process: {self.param_grid}')
+
         self.best_classifier = classifier_search.best_estimator_
+
         self.logger.info(f'Best estimator score is {classifier_search.best_score_}')
 
     def predict(self, X_test: pd.DataFrame) -> pd.Series:
