@@ -1,7 +1,7 @@
 import pytest
 from fastapi.testclient import TestClient
-from generate_test_data import generate_valid_data, generate_invalid_data
-from main import app, load_model
+from online_inference.generate_test_data import generate_valid_data, generate_invalid_data
+from online_inference.main import app, load_model
 
 client = TestClient(app)
 

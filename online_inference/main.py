@@ -7,7 +7,7 @@ from fastapi.encoders import jsonable_encoder
 from fastapi.exceptions import RequestValidationError, HTTPException
 from starlette.responses import PlainTextResponse
 
-from online_inference.server.src.model_data import ModelData
+from model_data import ModelData
 
 app = FastAPI()
 model = None
@@ -15,7 +15,7 @@ model = None
 
 @app.on_event("startup")
 def load_model():
-    with open("../../../ml_project/models/logreg.pkl", "rb") as file:
+    with open("./model.pkl", "rb") as file:
         global model
         model = pickle.load(file)
 
