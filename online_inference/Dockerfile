@@ -1,4 +1,4 @@
-FROM python:3.8
+FROM python:3.8-slim
 
 COPY requirements.txt ./online_inference/requirements.txt
 
