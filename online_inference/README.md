@@ -11,7 +11,7 @@ python3 -m pytest test_main.py
 
 ### Pull docker image:
 
-<pre><code>docker pull genusb/kutsko_mlops:2</code></pre>
+<pre><code>docker pull genusb/kutsko_mlops:3</code></pre>
 
 ### Run container:
 
