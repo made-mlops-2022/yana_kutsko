@@ -1,3 +1,10 @@
+### Run tests:
+
+<pre><code>
+cd ./online_inference
+python3 -m pytest test_main.py
+</code></pre>
+
 ### Build docker image:
 
 <pre><code>docker build -t kutsko_mlops:1 .</code></pre>
