@@ -6,8 +6,8 @@ from airflow.operators.python import PythonOperator
 from docker.types import Mount
 from airflow.models import Variable
 
-from pathes import RAW_DATA_PATH, RAW_TARGET_PATH, PROCESSED_DATA_PATH, FEATURES_TRAIN, \
-    FEATURES_TEST, TARGET_TRAIN, TARGET_TEST, MODEL_PATH, METRICS_PATH, DATA_VOLUME_PATH, SAVE_MODEL_PATH
+from consts import RAW_DATA_PATH, RAW_TARGET_PATH, PROCESSED_DATA_PATH, FEATURES_TRAIN, FEATURES_TEST, \
+    TARGET_TRAIN, TARGET_TEST, MODEL_PATH, METRICS_PATH, DATA_VOLUME_PATH, SAVE_MODEL_PATH, default_args
 
 
 def _set_model_variable(path: str) -> None:
@@ -18,6 +18,7 @@ with DAG(
         dag_id="train_model",
         start_date=pendulum.datetime(2022, 11, 28, tz="UTC"),
         schedule_interval="@weekly",
+        default_args=default_args,
         tags=["ml_ops"]
 ) as dag:
     preprocess_data = DockerOperator(

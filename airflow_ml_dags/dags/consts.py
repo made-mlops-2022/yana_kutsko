@@ -1,5 +1,7 @@
-from airflow.models import Variable
+from datetime import timedelta
 
+from airflow.models import Variable
+from airflow.utils.email import send_email_smtp
 
 DATA_VOLUME_PATH = Variable.get('data_volume_path')
 
@@ -24,4 +26,20 @@ FEATURES_TEST = "/data/split/{{ ds }}/features_test.csv"
 TARGET_TRAIN = "/data/split/{{ ds }}/target_train.csv"
 
 TARGET_TEST = "/data/split/{{ ds }}/target_test.csv"
+
+
+def failure_email(context):
+    dag_run = context.get('dag_run')
+    task_instances = dag_run.get_task_instances()
+    subject = f"These task instances failed: {task_instances}"
+    send_email_smtp(to=default_args['email'], subject=subject)
+
+
+default_args = {
+    "owner": "yana_kutsko",
+    "email": ['pasteyourtext.dev@gmail.com'],
+    "retries": 1,
+    "retry_delay": timedelta(seconds=30),
+    "on_failure_callback": failure_email
+}
 

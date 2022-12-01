@@ -3,13 +3,14 @@ import pendulum
 from airflow import DAG
 from airflow.providers.docker.operators.docker import DockerOperator
 from docker.types import Mount
-from pathes import RAW_DATA_PATH, RAW_TARGET_PATH, DATA_VOLUME_PATH
+from consts import RAW_DATA_PATH, RAW_TARGET_PATH, DATA_VOLUME_PATH, default_args
 
 
 with DAG(
         dag_id="generate_data",
         start_date=pendulum.datetime(2022, 11, 28, tz="UTC"),
         schedule_interval="@daily",
+        default_args=default_args,
         tags=["ml_ops"]
 ) as dag:
     predict = DockerOperator(

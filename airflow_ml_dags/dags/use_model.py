@@ -8,13 +8,14 @@ import pendulum
 from airflow import DAG
 from airflow.providers.docker.operators.docker import DockerOperator
 from docker.types import Mount
-from pathes import DATA_VOLUME_PATH, MODEL_PATH, RAW_DATA_PATH, PREDICTIONS_PATH
+from consts import DATA_VOLUME_PATH, MODEL_PATH, RAW_DATA_PATH, PREDICTIONS_PATH, default_args
 
 
 with DAG(
         dag_id="make_predictions",
         start_date=pendulum.datetime(2022, 11, 28, tz="UTC"),
         schedule_interval="@daily",
+        default_args=default_args,
         tags=["ml_ops"]
 ) as dag:
 
