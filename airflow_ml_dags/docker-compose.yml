@@ -69,6 +69,48 @@ services:
     environment: *airflow_environment
     command: scheduler
 
+  airlow_base:
+    build:
+      context: images/airflow-base
+    image: airflow-base
+    restart: "no"
+
+  generate:
+    build:
+      context: images/generate_data
+    image: generate-data
+    restart: "no"
+
+  preprocess:
+    build:
+      context: images/preprocess_data
+    image: preprocess-data
+    restart: "no"
+
+  split:
+    build:
+      context: images/split_data
+    image: split-data
+    restart: "no"
+
+  train:
+    build:
+      context: images/train_model
+    image: train-model
+    restart: "no"
+
+  validate:
+    build:
+      context: images/validate_model
+    image: validate-model
+    restart: "no"
+
+  predict:
+    build:
+      context: images/predict
+    image: predict
+    restart: "no"
+
 volumes:
   logs:
 

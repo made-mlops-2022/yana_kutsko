@@ -1,44 +1,26 @@
-import os
-import random
-
-import numpy as np
 import pendulum
 
-from sklearn.datasets import make_classification
-
 from airflow import DAG
-from airflow.operators.python import PythonOperator
-
-from pathes import RAW_DATA_PATH, RAW_TARGET_PATH
-
-
-def _synthesize_data(features_path: str, target_path: str) -> None:
-    n_samples: int = random.randint(100, 1000)
-
-    features: np.ndarray
-    target: np.ndarray
-    features, target = make_classification(n_samples=n_samples, n_features=10, n_informative=5)
-
-    os.makedirs(os.path.dirname(features_path), exist_ok=True)
-    os.makedirs(os.path.dirname(target_path), exist_ok=True)
-
-    np.savetxt(features_path, features, delimiter=",")
-    np.savetxt(target_path, target, delimiter=",")
+from airflow.providers.docker.operators.docker import DockerOperator
+from docker.types import Mount
+from pathes import RAW_DATA_PATH, RAW_TARGET_PATH, DATA_VOLUME_PATH
 
 
 with DAG(
         dag_id="generate_data",
         start_date=pendulum.datetime(2022, 11, 28, tz="UTC"),
-        schedule_interval="0 0 * * *",
+        schedule_interval="@daily",
         tags=["ml_ops"]
 ) as dag:
-    synthesize_data = PythonOperator(
-        task_id="synthesize_data",
-        python_callable=_synthesize_data,
-        op_kwargs={
-            "features_path": f"{RAW_DATA_PATH}",
-            "target_path": f"{RAW_TARGET_PATH}",
-        }
+    predict = DockerOperator(
+        image="generate-data",
+        command=f"--features_path {RAW_DATA_PATH} "
+                f"--target_path {RAW_TARGET_PATH}",
+        task_id="docker-airflow-predict",
+        network_mode='host',
+        do_xcom_push=False,
+        auto_remove=True,
+        mounts=[Mount(source=DATA_VOLUME_PATH, target='/data', type='bind')]
     )
 
-    synthesize_data
+    predict

@@ -5,6 +5,10 @@ DATA_VOLUME_PATH = Variable.get('data_volume_path')
 
 MODEL_PATH = Variable.get('model_path')
 
+METRICS_PATH = Variable.get('metrics_path')
+
+SAVE_MODEL_PATH = "/data/models/{{ ds }}/model.pkl"
+
 RAW_DATA_PATH = "/data/raw/{{ ds }}/data.csv"
 
 RAW_TARGET_PATH = "/data/raw/{{ ds }}/target.csv"
@@ -20,6 +24,4 @@ FEATURES_TEST = "/data/split/{{ ds }}/features_test.csv"
 TARGET_TRAIN = "/data/split/{{ ds }}/target_train.csv"
 
 TARGET_TEST = "/data/split/{{ ds }}/target_test.csv"
-
-METRICS_PATH = "/data/model/{{ ds }}/metrics.json"
 

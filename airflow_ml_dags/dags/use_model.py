@@ -17,11 +17,12 @@ with DAG(
         schedule_interval="@daily",
         tags=["ml_ops"]
 ) as dag:
+
     predict = DockerOperator(
         image="predict",
         command=f"--features_path {RAW_DATA_PATH} "
-                f"--predictions_path {PREDICTIONS_PATH}"
-                f"--model-path {MODEL_PATH}",
+                f"--predictions_path {PREDICTIONS_PATH} "
+                f"--model_path {MODEL_PATH}",
         task_id="docker-airflow-predict",
         network_mode='host',
         do_xcom_push=False,
