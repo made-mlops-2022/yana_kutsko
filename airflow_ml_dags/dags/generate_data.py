@@ -16,7 +16,7 @@ with DAG(
         image="generate-data",
         command=f"--features_path {RAW_DATA_PATH} "
                 f"--target_path {RAW_TARGET_PATH}",
-        task_id="docker-airflow-predict",
+        task_id="generate_data",
         network_mode='host',
         do_xcom_push=False,
         auto_remove=True,

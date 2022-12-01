@@ -80,4 +80,3 @@ with DAG(
     )
 
     preprocess_data >> split_data >> train_model >> set_model_path >> validate_model
-;
