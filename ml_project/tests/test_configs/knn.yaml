@@ -1,0 +1,26 @@
+output_model_path: './models/knn.pkl'
+output_metrics_path: './metrics/knn_metrics.json'
+data_params:
+  path_to_data: './out/random_mode/synthetic_data.csv'
+features_params:
+  categorical_features:
+    - 'sex'
+    - 'cp'
+    - 'fbs'
+    - 'restecg'
+    - 'exang'
+    - 'slope'
+    - 'ca'
+    - 'thal'
+  numerical_features:
+    - 'age'
+    - 'trestbps'
+    - 'chol'
+    - 'thalach'
+    - 'oldpeak'
+  target_column: 'condition'
+model_params:
+  model_type: 'KNeighborsClassifier'
+splitParams:
+  test_size: 0.3
+  random_state: 2
